@@ -1,14 +1,23 @@
 {
   "compilerOptions": {
-      "module": "commonjs",
-      "target": "es5",
-      "allowJs": true,
-      "checkJs": false,
-      "jsx": "react",
-      "noEmit": true,
-      "skipLibCheck": true,
-      "strict": true,
-      "moduleResolution": "node",
-      "esModuleInterop": true
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "target": "ESNext",
+    "types": [
+      "vite/client"
+    ],
+    "isolatedModules": true,
+    "module": "commonjs",
+    "allowJs": true,
+    "checkJs": false,
+    "jsx": "react",
+    "noEmit": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true
   }
 }
