@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+
 
 
 function CertifyElement() {
@@ -20,15 +22,18 @@ function CertifyElement() {
         <div>
             <h2>Certificar Producto</h2>
             <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
+                <TextField
+                    id="outlined-basic" 
+                    label="Nombre del producto"
+                    variant="outlined"
                     value={productName}
                     onChange={e => setProductName(e.target.value)}
                     placeholder="Nombre del producto"
                     required
                 />
-                <input
-                    type="number"
+                <TextField
+                    label= "Certificas o no?"
+                    variant="outlined"
                     value={productActivo}
                     onChange={e => setProductActivo(e.target.value)}
                     placeholder="Certificas o no?"
