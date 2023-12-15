@@ -12,17 +12,18 @@ function App() {
       <h1>Sistema de certificacion de Productos</h1>
       <ProductList/>
       <nav>
-        <ul>
-          <li>
+        <div>
+          <div>
             <Link to ="/">Certificacion SAG</Link>
-          </li>
-          <li>
+          </div>
+          <div>
             <Link to ="/pesticida">Certificacion Pestiidas</Link>
-          </li>
-          <li>
+          </div>
+          <div>
             <Link to ="/banojabon">Baño jabonoso</Link>
-          </li>
-        </ul>
+          </div>
+          
+        </div>
       </nav>
       <Routes>
         <Route path="/" element = {<CertifySAG/>} />

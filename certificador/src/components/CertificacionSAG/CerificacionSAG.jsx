@@ -3,7 +3,7 @@
 function CertifySAG() {
     return(
         <div>
-            <p>Certificacion SAG</p>
+            <h2>Certificacion SAG</h2>
         </div>
     )
 }

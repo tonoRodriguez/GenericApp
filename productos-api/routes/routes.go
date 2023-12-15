@@ -16,10 +16,11 @@ func SetupRouter() *gin.Engine {
 	r.Use(cors.New(config))
 
 	r.GET("/products", handlers.GetProducts)
-	r.GET("/productsCertificadores", handlers.GetProductsCertification)
 	r.POST("/register", handlers.RegisterProduct)
-	r.POST("/certify", handlers.CertifyProduct)
 	r.POST("/verify", handlers.VerifyProduct)
+	//________________________________Product Certification rutes______________________________________
+	r.GET("/productsCertificadores", handlers.GetProductsCertification)
+	r.POST("/certify", handlers.CertifyProduct)
 
 	return r
 }

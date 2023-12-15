@@ -3,7 +3,7 @@
 function CertifyBano() {
     return(
         <div>
-            <p>Certificacion Bano</p>
+            <h2>Certificacion Bano</h2>
         </div>
     )
 }
