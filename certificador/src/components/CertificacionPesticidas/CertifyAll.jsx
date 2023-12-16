@@ -11,9 +11,8 @@ function CertifyElement() {
     const [productActivo, setProductActivo] = useState('');
     const handleSubmit = async (e) =>{
         e.preventDefault();
-        console.log("ENtro Aca")
         try{
-            await axios.post('http://localhost:8080/certify', { name: productName, activo: parseInt(productActivo, 10) });
+            await axios.post('http://localhost:8080/certify', { name: productName,company: "Certificaciones CA", activo: parseInt(productActivo, 10) });
         } catch (error) {
             console.error("Error certyfing product:", error);
         }

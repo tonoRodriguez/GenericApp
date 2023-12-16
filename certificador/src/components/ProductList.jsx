@@ -29,13 +29,14 @@ function ProductList() {
                     <th scope="col">Name</th>
                     <th scope="col">Certification</th>
                     <th scope="col">Creation</th>
-                    </tr>
+                    </tr>1
                 </thead>
             <tbody>
             {
                     products.map((product, index) => {
                         let activoDisplay = product.Activo.Valid ? product.Activo.Int64 : 'N/A';
                         let createdAtDisplay = product.CreatedAt.Valid ? product.CreatedAt.String : 'N/A';
+                        let companyDisplay = product.Company.Valid ? product.Company. String : 'N/A'
                         if (activoDisplay === 'N/A'){
                             console.log(product);
                             return (
@@ -50,7 +51,7 @@ function ProductList() {
                                 <tr>
                                 <th scope="row">{index}</th>
                                 <td>{product.Name}</td>
-                                <td>{activoDisplay}</td>
+                                <td>{activoDisplay + " " + companyDisplay }</td>
                                 <td>{createdAtDisplay}</td>
                                 </tr>
                             );

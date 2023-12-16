@@ -109,7 +109,7 @@ func VerifyProduct(c *gin.Context) {
 
 func GetProductsCertification(c *gin.Context) {
 	query := `
-	SELECT Huerto.name, Certificados.activo, Certificados.created_at 
+	SELECT Huerto.name, Certificados.activo, Certificados.company, Certificados.created_at 
 	FROM Huerto
 	LEFT JOIN Certificados ON Huerto.name = Certificados.name
 	`
@@ -123,6 +123,7 @@ func GetProductsCertification(c *gin.Context) {
 	type Product struct {
 		Name      string
 		Activo    sql.NullInt64
+		Company   sql.NullString
 		CreatedAt sql.NullString
 	}
 
@@ -130,7 +131,7 @@ func GetProductsCertification(c *gin.Context) {
 
 	for rows.Next() {
 		var p Product
-		if err := rows.Scan(&p.Name, &p.Activo, &p.CreatedAt); err != nil {
+		if err := rows.Scan(&p.Name, &p.Activo, &p.Company, &p.CreatedAt); err != nil {
 			c.JSON(500, gin.H{"error": err.Error()})
 			return
 		}
@@ -143,8 +144,9 @@ func GetProductsCertification(c *gin.Context) {
 func CertifyProduct(c *gin.Context) {
 
 	var product struct {
-		Name   string `json:"name"`
-		Activo int    `json:"activo"`
+		Name    string `json:"name"`
+		Company string `json:"company"`
+		Activo  int    `json:"activo"`
 	}
 
 	if err := c.ShouldBindJSON(&product); err != nil {
@@ -152,14 +154,14 @@ func CertifyProduct(c *gin.Context) {
 		return
 	}
 
-	stmt, err := db.Prepare("INSERT INTO Certificados (name,activo) VALUES (?,?)")
+	stmt, err := db.Prepare("INSERT INTO Certificados (name,company,activo) VALUES (?,?,?)")
 	if err != nil {
 		c.JSON(500, gin.H{"error": err.Error()})
 		return
 	}
 	defer stmt.Close()
 
-	_, err = stmt.Exec(product.Name, product.Activo)
+	_, err = stmt.Exec(product.Name, product.Company, product.Activo)
 	if err != nil {
 		c.JSON(500, gin.H{"error": err.Error()})
 		return

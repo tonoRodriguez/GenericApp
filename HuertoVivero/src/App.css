@@ -1,38 +1,71 @@
-.App {
+/* Estilo general de la página */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Encabezados */
+h1 {
+  color: #2a9d8f; /* Verde brillante */
   text-align: center;
+  margin-bottom: 20px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Encabezado principal */
+h1:first-of-type {
+  color: #e76f51; /* Rojo anaranjado */
+  margin-top: 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Estilo para listas, registros y verificaciones */
+.ProductList, .RegisterProduct, .VerifyProduct {
+  background-color: white;
+  padding: 20px;
+  margin: 20px auto;
+  width: 80%;
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+  border-radius: 8px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+/* Botones y formularios */
+button, input, select {
+  padding: 10px;
+  margin: 5px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+button {
+  background-color: #f4a261; /* Naranja suave */
   color: white;
+  border: none;
+  cursor: pointer;
 }
 
-.App-link {
-  color: #61dafb;
+button:hover {
+  background-color: #e76f51; /* Rojo anaranjado más intenso */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Responsividad */
+@media (max-width: 768px) {
+  .ProductList, .RegisterProduct, .VerifyProduct {
+      width: 90%;
+      margin: 20px auto;
   }
-  to {
-    transform: rotate(360deg);
-  }
+}
+/* Estilos para títulos h2 en los componentes */
+h2 {
+  color: #264653; /* Un verde oscuro */
+  text-align: left;
+  padding-left: 20px;
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 1.5em;
+}
+
+/* Pequeño ajuste para mantener la coherencia entre h1 y h2 */
+h1, h2 {
+  font-family: 'Helvetica', sans-serif;
 }

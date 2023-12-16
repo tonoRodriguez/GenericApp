@@ -40,10 +40,11 @@ func SetupDatabase() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
+	//_________________-agregar compañia___________--
 	createTableSQL = `
 	CREATE TABLE IF NOT EXISTS Certificados(
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
+		company TEXT,
 		name TEXT NOT NULL,
 		activo INTEGER,
 		created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -60,13 +61,13 @@ func SetupDatabase() {
 		log.Fatal(err)
 	}
 
-	statement, err = db.Prepare("INSERT INTO Certificados (name,activo) VALUES (?,?)")
+	statement, err = db.Prepare("INSERT INTO Certificados (company,name,activo) VALUES (?,?,?)")
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer statement.Close()
 
-	_, err = statement.Exec("Mandarina", "1")
+	_, err = statement.Exec("Certificaciones CA", "Mandarina", "1")
 	if err != nil {
 		log.Fatal(err)
 	}

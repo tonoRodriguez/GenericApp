@@ -17,7 +17,7 @@ function App() {
             <Link to ="/">Certificacion SAG</Link>
           </div>
           <div>
-            <Link to ="/pesticida">Certificacion Pestiidas</Link>
+            <Link to ="/pesticida">Certificacion Pesticidas</Link>
           </div>
           <div>
             <Link to ="/banojabon">Baño jabonoso</Link>
