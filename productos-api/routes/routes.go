@@ -21,6 +21,8 @@ func SetupRouter() *gin.Engine {
 	//________________________________Product Certification rutes______________________________________
 	r.GET("/productsCertificadores", handlers.GetProductsCertification)
 	r.POST("/certify", handlers.CertifyProduct)
+	r.POST("/sagaproval", handlers.Sagaproval)
+	r.GET("/companylist", handlers.GetCompanies)
 
 	return r
 }

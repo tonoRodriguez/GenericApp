@@ -71,6 +71,36 @@ func SetupDatabase() {
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	//______________________Agregar sag______________________________
+
+	createTableSQL = `
+	CREATE TABLE IF NOT EXISTS SAG(
+		companyname TEXT PRIMARY KEY,
+		activo INTEGER,
+		created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+	);	
+	`
+	statement, err = db.Prepare(createTableSQL)
+	if err != nil {
+		log.Fatal(err)
+	}
+	_, err = statement.Exec()
+	defer statement.Close()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	statement, err = db.Prepare("INSERT INTO SAG (companyname,activo) VALUES (?,?)")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer statement.Close()
+
+	_, err = statement.Exec("Certificaciones CA", "1")
+	if err != nil {
+		log.Fatal(err)
+	}
 }
 
 func main() {

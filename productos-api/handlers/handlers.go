@@ -169,3 +169,46 @@ func CertifyProduct(c *gin.Context) {
 
 	c.JSON(200, gin.H{"message": "Producto certificado con éxito!"})
 }
+func Sagaproval(c *gin.Context) {
+	var product struct {
+		Company string `json:"company"`
+		Activo  int    `json:"activo"`
+	}
+
+	if err := c.ShouldBindJSON(&product); err != nil {
+		c.JSON(400, gin.H{"error": err.Error()})
+		return
+	}
+
+}
+
+func GetCompanies(c *gin.Context) {
+	query := `
+	SELECT SAG.companyname, SAG.activo, SAG.created_at 
+	FROM SAG
+	`
+	rows, err := db.Query(query)
+	if err != nil {
+		c.JSON(500, gin.H{"error": err.Error()})
+		return
+	}
+	defer rows.Close()
+
+	type Product struct {
+		CompanyName string
+		Activo      sql.NullInt64
+		CreatedAt   sql.NullString
+	}
+	var products []Product
+
+	for rows.Next() {
+		var p Product
+		if err := rows.Scan(&p.CompanyName, &p.Activo, &p.CreatedAt); err != nil {
+			c.JSON(500, gin.H{"error": err.Error()})
+			return
+		}
+		products = append(products, p)
+	}
+
+	c.JSON(200, products)
+}

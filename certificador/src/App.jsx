@@ -2,7 +2,6 @@ import './App.css';
 import CertifyAll from './components/CertificacionPesticidas/CertifyAll';
 import CertifySAG from './components/CertificacionSAG/CerificacionSAG';
 import CertifyBano from './components/CertificacionBanoJabonoso/CerificacionBano'
-import ProductList from './components/ProductList';
 import {Link, Route, Routes} from "react-router-dom"
 
 
@@ -10,7 +9,6 @@ function App() {
   return (
     <div>
       <h1>Sistema de certificacion de Productos</h1>
-      <ProductList/>
       <nav>
         <div>
           <div>
@@ -21,8 +19,7 @@ function App() {
           </div>
           <div>
             <Link to ="/banojabon">Baño jabonoso</Link>
-          </div>
-          
+          </div>          
         </div>
       </nav>
       <Routes>

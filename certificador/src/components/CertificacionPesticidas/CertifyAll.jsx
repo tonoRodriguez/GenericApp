@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+import ProductList from '../ProductsList/ProductList';
 
 
 
@@ -19,6 +20,7 @@ function CertifyElement() {
     };
     return(
         <div>
+            <ProductList/>
             <h2>Certificar Producto</h2>
             <form onSubmit={handleSubmit}>
                 <TextField
