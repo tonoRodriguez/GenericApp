@@ -27,6 +27,7 @@ function ProductList() {
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
                     <th scope="col">Certification</th>
+                    <th scope='col'>Baño Jabonoso</th>
                     <th scope="col">Creation</th>
                     </tr>
                 </thead>
@@ -35,9 +36,12 @@ function ProductList() {
                     products.map((product, index) => {
                         let activoDisplay = product.Activo.Valid ? product.Activo.Int64 : 'N/A';
                         let createdAtDisplay = product.CreatedAt.Valid ? product.CreatedAt.String : 'N/A';
-                        let companyDisplay = product.Company.Valid ? product.Company. String : 'N/A'
+                        let companyDisplay = product.Company.Valid ? product.Company.String : 'N/A';
+                        let companyBJDisplay = product.Company_bj? product.Company_bj.String: 'N/A';
+                        let banoJabonosoDisplay = product.Bano_j? product.Bano_j.Int64: 'N/A';
+
+                        console.log(product);
                         if (activoDisplay === 'N/A'){
-                            console.log(product);
                             return (
                                 <tr>
                                 <th scope="row">{index}</th>
@@ -51,6 +55,7 @@ function ProductList() {
                                 <th scope="row">{index}</th>
                                 <td>{product.Name}</td>
                                 <td>{activoDisplay + " " + companyDisplay }</td>
+                                <td>{banoJabonosoDisplay + " " + companyBJDisplay}</td>
                                 <td>{createdAtDisplay}</td>
                                 </tr>
                             );

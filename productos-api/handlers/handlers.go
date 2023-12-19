@@ -21,7 +21,7 @@ func init() {
 // -------------------------------- Funciones relacionadas con el Huerto --------------------------------------------------------------
 func GetProducts(c *gin.Context) {
 	query := `
-	SELECT Huerto.name, Huerto.number, Certificados.activo, Certificados.created_at 
+	SELECT Huerto.name, Huerto.number, Certificados.activo,Certificado.bano_j, Certificados.created_at, 
 	FROM Huerto
 	LEFT JOIN Certificados ON Huerto.name = Certificados.name
 	`
@@ -36,6 +36,7 @@ func GetProducts(c *gin.Context) {
 		Name      string
 		Number    int
 		Activo    sql.NullInt64
+		Bano      sql.NullInt64
 		CreatedAt sql.NullString
 	}
 
@@ -43,7 +44,7 @@ func GetProducts(c *gin.Context) {
 
 	for rows.Next() {
 		var p Product
-		if err := rows.Scan(&p.Name, &p.Number, &p.Activo, &p.CreatedAt); err != nil {
+		if err := rows.Scan(&p.Name, &p.Number, &p.Activo, &p.Bano, &p.CreatedAt); err != nil {
 			c.JSON(500, gin.H{"error": err.Error()})
 			return
 		}
@@ -109,7 +110,7 @@ func VerifyProduct(c *gin.Context) {
 
 func GetProductsCertification(c *gin.Context) {
 	query := `
-	SELECT Huerto.name, Certificados.activo, Certificados.company, Certificados.created_at 
+	SELECT Huerto.name, Certificados.activo, Certificados.company_c, Certificados.company_bj,Certificados.bano_j, Certificados.created_at 
 	FROM Huerto
 	LEFT JOIN Certificados ON Huerto.name = Certificados.name
 	`
@@ -121,17 +122,19 @@ func GetProductsCertification(c *gin.Context) {
 	defer rows.Close()
 
 	type Product struct {
-		Name      string
-		Activo    sql.NullInt64
-		Company   sql.NullString
-		CreatedAt sql.NullString
+		Name       string
+		Activo     sql.NullInt64
+		Company    sql.NullString
+		Company_bj sql.NullString
+		Bano_j     sql.NullInt64
+		CreatedAt  sql.NullString
 	}
 
 	var products []Product
 
 	for rows.Next() {
 		var p Product
-		if err := rows.Scan(&p.Name, &p.Activo, &p.Company, &p.CreatedAt); err != nil {
+		if err := rows.Scan(&p.Name, &p.Activo, &p.Company, &p.Company_bj, &p.Bano_j, &p.CreatedAt); err != nil {
 			c.JSON(500, gin.H{"error": err.Error()})
 			return
 		}
@@ -145,7 +148,7 @@ func CertifyProduct(c *gin.Context) {
 
 	var product struct {
 		Name    string `json:"name"`
-		Company string `json:"company"`
+		Company string `json:"company_c"`
 		Activo  int    `json:"activo"`
 	}
 
@@ -211,4 +214,8 @@ func GetCompanies(c *gin.Context) {
 	}
 
 	c.JSON(200, products)
+}
+
+func banoJabonosoApproval(c *gin.Context) {
+
 }

@@ -44,9 +44,11 @@ func SetupDatabase() {
 	createTableSQL = `
 	CREATE TABLE IF NOT EXISTS Certificados(
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
-		company TEXT,
+		company_c TEXT,
+		company_bj TEXT,
 		name TEXT NOT NULL,
 		activo INTEGER,
+		bano_j INTEGER,
 		created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
 		FOREIGN KEY (name) REFERENCES Huerto(name)
 	);	
@@ -61,13 +63,13 @@ func SetupDatabase() {
 		log.Fatal(err)
 	}
 
-	statement, err = db.Prepare("INSERT INTO Certificados (company,name,activo) VALUES (?,?,?)")
+	statement, err = db.Prepare("INSERT INTO Certificados (company_c,company_bj,name,activo,bano_j) VALUES (?,?,?,?,?)")
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer statement.Close()
 
-	_, err = statement.Exec("Certificaciones CA", "Mandarina", "1")
+	_, err = statement.Exec("Certificaciones CA", "Baños Jabonos", "Mandarina", "1", "1")
 	if err != nil {
 		log.Fatal(err)
 	}
