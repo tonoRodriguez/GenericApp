@@ -212,10 +212,9 @@ func GetCompanies(c *gin.Context) {
 		}
 		products = append(products, p)
 	}
-
 	c.JSON(200, products)
 }
 
-func banoJabonosoApproval(c *gin.Context) {
+func BanoJabonosoApproval(c *gin.Context) {
 
 }

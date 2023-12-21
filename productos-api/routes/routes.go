@@ -23,6 +23,7 @@ func SetupRouter() *gin.Engine {
 	r.POST("/certify", handlers.CertifyProduct)
 	r.POST("/sagaproval", handlers.Sagaproval)
 	r.GET("/companylist", handlers.GetCompanies)
+	r.POST("/banojabonoso", handlers.BanoJabonosoApproval)
 
 	return r
 }
