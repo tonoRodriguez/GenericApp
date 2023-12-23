@@ -11,7 +11,7 @@ function CertifySAG() {
     const handleSubmit = async (e) =>{
         e.preventDefault();
         try{
-            await axios.post('http://localhost:8080/sagaproval', { company: productName, activo: parseInt(productActivo, 10) });
+            await axios.post('http://localhost:8080/sagaproval', { companyname: productName, activo: parseInt(productActivo, 10) });
         } catch (error) {
             console.error("Error certyfing product:", error);
         }
